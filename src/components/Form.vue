@@ -115,7 +115,7 @@ export default ({
             this.form.currencyAmount = this.calculation
             this.axios
                 .post(
-                    "./public/mail.php",
+                    "./mail.php",
                     querystring.stringify(this.form)
                 ).then(()=>{
                     this.sent = true;
