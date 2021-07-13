@@ -25,7 +25,7 @@
                 color="blue-grey"
                 dark
             >
-                Сумма в валюте
+                Сумма в валюте : {{calculation}}
             </v-alert>
             <v-text-field
                 v-model="email"
@@ -53,6 +53,7 @@ export default ({
             items:[],
             email:"",
             currency:[],
+            sum:1,
             form:{
                 amount:'',
                 select:"null",
@@ -71,10 +72,20 @@ export default ({
                     this.currency.push(res.data.Valute[CharCode])
                     this.items.push(char.Name)
                 }
+                console.log(res);
             })
-    },
+    },    
     computed:{
-        
-    }
+        //обработка данных о валюте 
+        calculation(){
+            this.currency.forEach(el => {
+                if(el.Name === this.form.select){
+                    this.sum = el.Value/el.Nominal
+                }
+            });
+            return Math.floor((this.form.amount / this.sum) * 100) / 100 
+        }
+    },
+
 })
 </script>
