@@ -53,11 +53,11 @@ require 'PHPMailer/src/SMTP.php';
   $mail->Host = 'smtp.yandex.ru';
   $mail->SMTPAuth = TRUE;
   $mail->SMTPSecure = 'ssl';
-  $mail->Username = 'currenCyconversion@yandex.ru'; // логин от вашей почты
-  $mail->Password = 'iipalwkfwhdzbjsd'; // пароль от почтового ящика
+  $mail->Username = ''; // логин от вашей почты
+  $mail->Password = ''; // пароль от почтового ящика
   $mail->Port = '465';
   
-  $mail->setFrom('currencyConversion@yandex.ru', $email); //Who is sending the message
+  $mail->setFrom('email', $email); //Who is sending the message
   $mail->addAddress($email); //Set who the message is to be sent to
   if(!$mail->Send())
   {
