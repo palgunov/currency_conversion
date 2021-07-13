@@ -20,3 +20,9 @@ export default {
   }),
 };
 </script>
+<style>
+  body{
+    margin: 55px auto;
+    max-width: 550px;
+  }
+</style>
