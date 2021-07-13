@@ -50,12 +50,9 @@ export default ({
     data() {
         return{
             sent:false,
-            items:[
-                1,
-                2,
-                3,
-            ],
+            items:[],
             email:"",
+            currency:[],
             form:{
                 amount:'',
                 select:"null",
@@ -66,7 +63,18 @@ export default ({
         
     },
     mounted(){
-        
+        //получаем данные курсов валют
+        this.axios.get('https://www.cbr-xml-daily.ru/daily_json.js')
+            .then((res)=>{
+                for(let CharCode in res.data.Valute){
+                    let char = res.data.Valute[CharCode]
+                    this.currency.push(res.data.Valute[CharCode])
+                    this.items.push(char.Name)
+                }
+            })
     },
+    computed:{
+        
+    }
 })
 </script>
