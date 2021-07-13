@@ -34,9 +34,13 @@
                 required
                 placeholder="email"
                 label="E-mail"
+                :error-messages="emailErrors"
+                @input="$v.email.$touch()"
+                @blur="$v.email.$touch()"
             />
             <v-btn
                 type="submit"
+                :disabled="this.$v.$invalid"
             >
                 
                 Записаться на обмен валюты
@@ -46,8 +50,16 @@
 </template>
 <script>
 const querystring = require("querystring");
+import { validationMixin } from 'vuelidate'
+import { required, email } from 'vuelidate/lib/validators'
 
 export default ({
+    mixins: [validationMixin],
+
+    validations: {
+      email: { required, email },
+    },
+
     data() {
         return{
             sent:false,
@@ -85,9 +97,18 @@ export default ({
                 }
             });
             return Math.floor((this.form.amount / this.sum) * 100) / 100 
-        }
+        },
+        //валидация емейла
+        emailErrors () {
+            const errors = []
+            if (!this.$v.email.$dirty) return errors
+            !this.$v.email.email && errors.push('Должен быть действующий e-mail')
+            !this.$v.email.required && errors.push('Введите email')
+            return errors
+      },
     },
     methods:{
+        //отправка формы
         onSubmit(e){
             e.preventDefault();
             this.form.email = this.email
