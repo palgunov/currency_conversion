@@ -12,6 +12,7 @@
     "querystring": "^0.2.0",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.4",
+    "vuelidate": "^0.7.6",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {
