@@ -20,5 +20,10 @@ npm run build
 npm run lint
 ```
 
+### для работы отправки писем в корневую папку надо добавить PHPmailer
+```
+https://github.com/PHPMailer/PHPMailer
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
