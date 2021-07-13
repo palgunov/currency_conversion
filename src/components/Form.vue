@@ -8,6 +8,7 @@
         </v-alert>
         <form
             v-if="!sent"
+            @submit="onSubmit"
         >
             <v-text-field
                 v-model="form.amount"
@@ -44,7 +45,7 @@
     </div>
 </template>
 <script>
-
+const querystring = require("querystring");
 
 export default ({
     data() {
@@ -86,6 +87,21 @@ export default ({
             return Math.floor((this.form.amount / this.sum) * 100) / 100 
         }
     },
+    methods:{
+        onSubmit(e){
+            e.preventDefault();
+            this.form.email = this.email
+            this.form.currencyAmount = this.calculation
+            this.axios
+                .post(
+                    "./public/mail.php",
+                    querystring.stringify(this.form)
+                ).then(()=>{
+                    this.sent = true;
+                })
+
+        }
+    }
 
 })
 </script>
